@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { motion } from "framer-motion";
 import { ReactElement, useState } from "react";
 import styles from "./Card.module.scss";
@@ -32,9 +31,7 @@ export default function Card({ title, description, icon }: CardProps) {
 
   return (
     <motion.div
-      className={classNames(styles.container, {
-        [styles.active]: active,
-      })}
+      className={`${styles.container} ${active && styles.active}`}
       onHoverStart={() => setActive(true)}
       onHoverEnd={() => setActive(false)}
       initial="inactive"
@@ -42,14 +39,14 @@ export default function Card({ title, description, icon }: CardProps) {
       variants={containerVariants}
     >
       <div className={styles.iconContainer}>{icon}</div>
-      <div className={classNames(styles.titleContainer)}>
+      <div className={styles.titleContainer}>
         <h5 className={styles.title}>{title}</h5>
       </div>
       <motion.div
         initial="hidden"
         animate={active ? "visible" : "hidden"}
         variants={descriptionVariants}
-        className={classNames(styles.description)}
+        className={styles.description}
       >
         <div className={styles.descriptionInner}>
           <div className={styles.descriptionIconContainer}>{icon}</div>
